@@ -1,0 +1,116 @@
+  /* =========================================================================
+     LANDING — the one cinematic moment in the app. Everything below this
+     comment is scoped to `body.landing-mode` or landing-only classes, and is
+     never touched by the working app screens (join/people/items/etc).
+     ========================================================================= */
+  body.landing-mode .wrap{max-width:1040px;}
+  body.landing-mode .brand{margin-bottom:8px;}
+  body.landing-mode .brand p{display:none;}
+
+  .hero-drop{position:absolute;border-radius:50%;filter:blur(1px);z-index:1;animation:floaty 5s ease-in-out infinite;}
+  .hero-drop-1{width:44px;height:44px;top:2px;left:14%;background:radial-gradient(circle at 32% 28%, rgba(255,255,255,0.95), rgba(255,255,255,0.2) 55%, rgba(255,255,255,0) 75%);border:1px solid rgba(255,255,255,0.6);box-shadow:0 6px 16px rgba(28,27,24,0.08);}
+  .hero-drop-2{width:24px;height:24px;top:52px;right:16%;background:radial-gradient(circle at 32% 28%, rgba(232,169,59,0.9), rgba(232,169,59,0.15) 60%, rgba(232,169,59,0) 78%);border:1px solid rgba(232,169,59,0.5);animation-delay:0.4s;}
+  .hero-drop-3{width:15px;height:15px;top:96px;left:24%;background:radial-gradient(circle at 32% 28%, rgba(255,255,255,0.9), rgba(255,255,255,0.1) 60%, rgba(255,255,255,0) 78%);border:1px solid rgba(255,255,255,0.5);animation-delay:0.9s;}
+  @keyframes floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-9px);}}
+
+  .cta-wrap{position:relative;display:inline-block;z-index:2;}
+  .cta-glow{position:absolute;top:50%;left:50%;width:240px;height:100px;transform:translate(-50%,-50%);background:radial-gradient(ellipse at center, rgba(232,169,59,0.4), rgba(232,169,59,0) 72%);filter:blur(20px);z-index:0;pointer-events:none;}
+  .btn-hero{position:relative;padding:15px 28px;font-size:15px;letter-spacing:0.01em;}
+  .btn-hero::after{content:'→';display:inline-block;margin-left:8px;transition:transform var(--fast) var(--ease);}
+  .btn-hero:hover::after{transform:translateX(4px);}
+  .btn-hero:disabled::after{display:none;}
+
+  /* ---- hero ----
+     Two-column grid on desktop so the receipt sits BESIDE the headline
+     instead of stacking beneath it and pushing the CTA out of the fold —
+     this is the root-cause fix for the "start a new bill" button being cut
+     off / requiring a scroll to find. Single column (original stacked
+     order) on narrower viewports. */
+  .hero-cinematic{padding:40px 4px 10px;position:relative;}
+  .hero-grid{display:grid;grid-template-columns:1.15fr 0.9fr;gap:28px;align-items:center;}
+  .hero-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--clay);margin:0 0 18px;letter-spacing:0.03em;}
+  .hero-headline{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(38px,6.2vw,66px);line-height:1.02;letter-spacing:-0.02em;margin:0 0 24px;}
+  .hero-headline .line{display:block;overflow:hidden;}
+  .hero-headline .line span{display:block;}
+  .hero-headline .line-clean span{color:var(--pine);}
+  .hero-headline em{font-style:italic;color:var(--clay);font-weight:500;}
+  .hero-sub{color:var(--ink-soft);font-size:16px;line-height:1.6;max-width:42ch;margin:0 0 28px;}
+
+  /* ---- the hero receipt: primary visual object, not a dashboard card ---- */
+  .hero-receipt-wrap{display:flex;justify-content:center;margin:0;position:relative;perspective:900px;}
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-receipt-wrap{order:2;margin-top:8px;}
+    .hero-copy{order:1;}
+  }
+
+  .receipt-hero{
+    width:min(300px,86vw); background:var(--card); border:1px solid var(--line);
+    border-radius:3px; padding:26px 22px 24px; font-family:'IBM Plex Mono',monospace;
+    box-shadow:0 24px 48px rgba(33,29,22,0.16), 0 4px 10px rgba(33,29,22,0.08);
+    transform:rotate(-2.5deg); position:relative;
+  }
+  .receipt-hero::before{
+    content:''; position:absolute; top:-1px; left:0; right:0; height:8px;
+    background-image: radial-gradient(circle at 8px 0, transparent 6px, var(--paper) 6.5px);
+    background-size: 16px 8px; background-repeat: repeat-x;
+  }
+  .receipt-hero .rh-brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;text-align:center;margin:6px 0 2px;letter-spacing:0.01em;}
+  .receipt-hero .rh-sub{text-align:center;font-size:10.5px;color:var(--ink-soft);margin-bottom:16px;}
+  .receipt-hero .rh-line{display:flex;justify-content:space-between;font-size:12px;margin-bottom:7px;color:var(--ink-soft);}
+  .receipt-hero .rh-line span:last-child{color:var(--ink);}
+  .receipt-hero .rh-div{border-top:1px dashed var(--line);margin:10px 0;}
+  .receipt-hero .rh-total{display:flex;justify-content:space-between;font-size:14.5px;font-weight:700;color:var(--ink);}
+  .receipt-hero .rh-total span:last-child{color:var(--clay);}
+  .receipt-hero .rh-stamp{position:absolute;bottom:14px;right:16px;font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;color:var(--pine);border:1.5px solid var(--pine);border-radius:4px;padding:2px 7px;transform:rotate(-6deg);opacity:0.75;}
+
+  .scroll-hint{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600;color:var(--ink-soft);text-align:center;margin:14px 0 10px;padding:10px 14px;display:inline-block;cursor:pointer;border-radius:999px;transition:color var(--fast) var(--ease), background var(--fast) var(--ease);}
+  .scroll-hint:hover{color:var(--pine);background:var(--pine-soft);}
+  .hero-copy{text-align:left;}
+  .hero-copy .cta-wrap{display:block;}
+  .hero-copy .scroll-hint-row{margin-top:4px;}
+
+  /* ---- story flow: a vertical narrative, not a card grid ---- */
+  .story-flow{position:relative;padding:20px 4px 50px;}
+  .story-flow::before{
+    content:''; position:absolute; top:6px; bottom:60px; left:19px;
+    border-left:1.5px dashed var(--line-strong); z-index:0;
+  }
+  .story-step{position:relative;display:flex;gap:22px;padding:34px 0;align-items:flex-start;}
+  .story-num{
+    flex:0 0 auto; width:40px;height:40px;border-radius:50%;background:var(--card);
+    border:1.5px solid var(--line-strong); display:flex;align-items:center;justify-content:center;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:var(--pine);
+    position:relative;z-index:1;
+  }
+  .story-body{flex:1;min-width:0;padding-top:4px;}
+  .story-body h3{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:600;margin:0 0 6px;letter-spacing:-0.005em;}
+  .story-body p{color:var(--ink-soft);font-size:14px;line-height:1.55;margin:0 0 16px;max-width:40ch;}
+
+  /* mini illustrative visuals per step — small, quiet, built from existing chip/receipt language */
+  .story-visual{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .sv-receipt{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;background:var(--card);border:1px solid var(--line);
+    border-radius:4px;padding:10px 14px;width:fit-content;color:var(--ink-soft);
+  }
+  .sv-receipt div{margin-bottom:3px;}
+  .sv-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;font-size:12px;font-weight:600;background:var(--card);border:1px solid var(--line);color:var(--ink-soft);}
+  .sv-chip .dot{width:8px;height:8px;border-radius:50%;}
+  .sv-link{display:inline-flex;align-items:center;gap:4px;color:var(--line-strong);font-size:11px;}
+  .sv-link .dash{width:20px;border-top:1.5px dashed var(--line-strong);}
+  .sv-total{font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:600;color:var(--clay);}
+  .sv-total .cur{font-size:16px;color:var(--ink-soft);margin-right:2px;}
+
+  /* ---- final CTA ---- */
+  .final-cta{text-align:center;padding:60px 10px 40px;position:relative;}
+  .final-cta .hero-eyebrow{text-align:center;}
+  .final-cta h2{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(30px,6vw,46px);letter-spacing:-0.015em;margin:0 0 30px;}
+  .final-cta h2 .arrow{display:inline-block;color:var(--clay);margin-left:6px;transition:transform var(--fast) var(--ease);}
+  .final-cta:hover h2 .arrow{transform:translateX(4px);}
+
+  @media (max-width:600px){
+    .hero-receipt-wrap{justify-content:center;margin-top:6px;}
+    .receipt-hero{transform:rotate(-1.2deg);}
+    .story-flow::before{left:19px;}
+    .story-step{gap:16px;}
+  }

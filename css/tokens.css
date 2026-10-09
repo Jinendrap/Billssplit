@@ -1,0 +1,73 @@
+/* =========================================================================
+   BILLSPLIT — DESIGN SYSTEM FOUNDATION
+   Identity concept: the receipt itself. Warm paper, deep ink, a till-roll
+   rhythm of dashes and perforations, numbers that behave like numbers.
+
+   Palette:
+     --paper   warm stock the app lives on
+     --ink     primary text, "printed" black
+     --pine    dark green — brand / confirm / totals-you-owe-less
+     --clay    muted terracotta accent — used sparingly, for emphasis only
+     --amber   the one bright highlight — reserved for split totals
+
+   Type:
+     Fraunces        — editorial display serif, marketing moments only
+     Space Grotesk   — application headings (h2, tab labels, nav)
+     Inter           — UI body copy, buttons, inputs
+     IBM Plex Mono   — money, ids, technical/receipt text
+
+   Scales below (space/radius/shadow/duration) exist so every component
+   pulls from the same system instead of hand-picking one-off pixel values
+   — this is what keeps the app feeling like one cohesive product instead
+   of a pile of independently-styled screens.
+
+   Motion conventions (see js/motion.js): a single orchestrated entrance
+   per screen, no per-hover fades scattered everywhere. Buttons get a
+   physical 1px press; cards get a quiet lift only on the elements people
+   actually act on. The product stays calm — whitespace is used
+   deliberately rather than filled with decoration.
+   ========================================================================= */
+:root{
+  /* ---- color ---- */
+  --paper:#F3EEE2; --paper-2:#EAE2CE; --ink:#211D16; --ink-soft:#6B6252;
+  --pine:#173226; --pine-soft:#E3E9DE; --clay:#B4552F; --clay-soft:#F3E2D6;
+  --red:#A23B2C; --line:#D8CFB8; --line-strong:#C3B896;
+  --card:#FBF8EF; --amber:#E8A93B; --cream:#FBF8EF;
+
+  /* selective depth — used only on nav / share-bar / receipts, not everywhere */
+  --glass-bg: rgba(251,248,239,0.86);
+  --glass-bg-strong: rgba(251,248,239,0.94);
+  --glass-border: rgba(33,29,22,0.08);
+  --glass-shadow: 0 8px 24px rgba(33,29,22,0.08);
+
+  /* ---- spacing scale (4px base) — every margin/padding/gap should trace to one of these ---- */
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:20px;
+  --sp-6:24px; --sp-7:32px; --sp-8:40px; --sp-9:48px; --sp-10:64px;
+
+  /* ---- radius scale ---- */
+  --radius-xs:4px; --radius-sm:6px; --radius:10px; --radius-lg:16px; --radius-pill:999px;
+
+  /* ---- shadow scale — three depths, used consistently instead of one-off shadows ---- */
+  --shadow-sm: 0 1px 0 rgba(33,29,22,0.03);
+  --shadow-md: 0 8px 24px rgba(33,29,22,0.08);
+  --shadow-lg: 0 24px 48px rgba(33,29,22,0.16), 0 4px 10px rgba(33,29,22,0.08);
+
+  /* ---- motion ---- */
+  --ease: cubic-bezier(.22,.68,.36,1);
+  --fast: 140ms; --med: 260ms; --slow: 420ms;
+
+  /* ---- layout ---- */
+  --app-width: 720px;      /* the working app screens (join/people/items/charges/split) */
+  --landing-width: 1040px;
+}
+*{box-sizing:border-box;}
+::selection{background:var(--amber);color:var(--ink);}
+html{-webkit-tap-highlight-color:transparent;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+.wrap{max-width:var(--app-width);margin:0 auto;padding:var(--sp-7) var(--sp-5) 90px;position:relative;z-index:1;}
+/* Landing manages its own (wider) width via body.landing-mode .wrap in
+   css/landing.css, so app-col must stay a no-op there — this instruction
+   explicitly leaves the landing page untouched. */
+body:not(.landing-mode) .app-col{max-width:var(--app-width);margin:0 auto;position:relative;z-index:2;}
+:focus-visible{outline:2px solid var(--pine);outline-offset:2px;border-radius:var(--radius-xs);}
+@media (prefers-reduced-motion: reduce){ *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;} }
