@@ -2,7 +2,7 @@ BillSplit
 
 Split restaurant and grocery bills item by item, not evenly. Share one link, everyone claims what they had, and the totals update live on every phone. No accounts, no app installs.
 
-Try it here: billssplit.netlify.app
+Try it here: https://billssplit.netlify.app
 
 Features
 Link-based sessions: create a bill, share the URL (?bill=<id>), and anyone can join from their own device.
