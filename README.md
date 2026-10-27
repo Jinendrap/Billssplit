@@ -77,5 +77,3 @@ Tighter Firestore rules
 UPI / payment link generation on the Split tab
 Custom domain
 Cleanup
-
-netlify.toml and netlify/functions/scanReceipt.js are leftovers from an earlier approach and can be deleted.
